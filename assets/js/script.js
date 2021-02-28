@@ -105,10 +105,11 @@ function startQuiz () {
     getQuestion(currentQuestionIndex);
 }
 
+// ------------------------------------------------------------------------
+
 //
 function answerChecker (event) {
     event.preventDefault();
-    console.log(event);
 
     feedback.style.display = "block";
     var responseEl = document.createElement("p");
@@ -133,11 +134,81 @@ function answerChecker (event) {
     
 }
 
+//
+function addScore (event) {
+    event.preventDefault();
+
+    submitScoreEl.style.display = "none";
+    highScoresEl.style.dsiplay = "block";
+
+    var initialsInput = userInitials.value.toUpperCase();
+    scoreList.push({initials: initialsInput, score: secondsLeft});
+
+    //sort 
+    // scoreList = scoreList.sort(function(a, b) {
+    //     var scoreA = a.score;
+    //     var scoreB = b.score;
+
+    //     if (scoreA <scoreB) {
+    //         return -1;
+    //     }
+    //     else if (scoreA > scoreB) {
+    //         return 1;
+    //     }
+    //     else {
+    //         return 0;
+    //     }
+    // });
+
+    scoreListEl.textContent = "";
+    for (var i = 0; i < scoreList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = scoreList[i].initials + ": " + scoreList[i].score;
+        scoreListEl.append(li);
+    }
+    // Adds to local storage
+    storeScores();
+    renderScores();
+}
+
+function storeScores () {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+function renderScores () {
+    // Gets stored scores from the localStorage
+    // parses the JSON string to an object 
+    var storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
+
+    // If scores were retrieved from the localStorage, update the scoreList array to it 
+    if (storedScoreList !== null) {
+        scoreList = storedScoreList;
+    }
+}
+
+//
+function clearHighScores () {
+    localStorage.clear()
+    scoreListEl.textContent = "";
+}
+
+
+// ------------------------------------------------------------------------
+
 // Start the Quiz with the timer 
 startButton.addEventListener("click", startQuiz);
-// answerChoicesButton.addEventListener("click", answerChecker);
 
-
+//  
 answerChoicesButton.forEach(element => {
-    element.addEventListener("click", answerChecker);
+    element.addEventListener("click",answerChecker);
 });
+
+//
+submitScoreButton.addEventListener("click", addScore);
+
+//
+clearScoresButton.addEventListener("click", clearHighScores);
+
+//Return Button 
+
+//View-Hide High Scores Button 
