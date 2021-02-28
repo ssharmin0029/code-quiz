@@ -1,12 +1,12 @@
 // Variables to reference DOM elements + Variables definitions to hold values
 var timerCount = document.querySelector("#timer-count");
 var userScore = document.querySelector("#user-score");
-var viewScoreButton = document.querySelector("#view-scores-button");
+var viewHighScoresButton = document.querySelector("#view-high-scores-button");
 var secondsLeft = 90;
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 var quizStartEl = document.querySelector("#quiz-start-section");
 var startButton = document.querySelector("#start-button");
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 var quizQuestionsEl = document.querySelector("#quiz-section");
 var questionTitleEl = document.querySelector("#question-title");
 var answerChoicesButton = document.querySelectorAll("button.answer-choices")
@@ -16,17 +16,17 @@ var asnwer3Button = document.querySelector("#choice3");
 var asnwer4Button = document.querySelector("#choice4");
 var feedback = document.querySelector("#feedback");
 var currentQuestionIndex = 0;
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 var submitScoreEl = document.querySelector("#submit-score-section");
 var userInitials = document.querySelector("#user-initials");
 var submitScoreButton = document.querySelector("#submit-score-button");
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 var highScoresEl = document.querySelector("#high-scores-section");
 var scoreListEl = document.querySelector("#score-list");
 var returnButton = document.querySelector("#return-button");
 var clearScoresButton = document.querySelector("#clear-scores-button");
 var scoreList = [];
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 // Array of question objects
 var arrayOfQuestions = [
@@ -67,7 +67,7 @@ var arrayOfQuestions = [
         correctAnswer: "3"
     }
 ];
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 //
 function getQuestion (id) {
@@ -105,7 +105,7 @@ function startQuiz () {
     getQuestion(currentQuestionIndex);
 }
 
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 //
 function answerChecker (event) {
@@ -192,8 +192,7 @@ function clearHighScores () {
     scoreListEl.textContent = "";
 }
 
-
-// ------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 // Start the Quiz with the timer 
 startButton.addEventListener("click", startQuiz);
@@ -210,5 +209,22 @@ submitScoreButton.addEventListener("click", addScore);
 clearScoresButton.addEventListener("click", clearHighScores);
 
 //Return Button 
+returnButton.addEventListener("click", function () {
+    highScoresEl.style.display = "none";
+    quizStartEl.style.display = "block";
+    secondsLeft = 90;
+    timerCount.textContent = "Time: " + secondsLeft;
+});
 
 //View-Hide High Scores Button 
+viewHighScoresButton.addEventListener("click", function () {
+    if (highScoresEl.style.display === "none") {
+        highScoresEl.style.display = "block";
+    }
+    else if (highScoresEl.style.display === "block") {
+        highScoresEl.style.display = "none";
+    }
+    else {
+        return alert("No Scores to Show.");
+    }
+});
