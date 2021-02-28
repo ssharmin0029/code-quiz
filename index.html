@@ -24,30 +24,30 @@
                     <br />
                     Keep in mind that incorrect answers will penalize your scoreTime by 10 seconds for each question!
                 </p>
-                    <button id="btn-start">Start Quiz</button>
+                    <button id="start-button">Start Quiz</button>
             
             </section> 
             <!-- Quiz-Question Section -->
             <section id="quiz-section">
-                <h2 id="quiz-question"></h2>
+                <h2 id="quiz-question">I am question</h2>
                 <ul>
-                    <li><button id="choice1" value="0" type="button"></button></li>
-                    <li><button id="choice2" value="1" type="button"></button></li>
-                    <li><button id="choice3" value="2" type="button"></button></li>
-                    <li><button id="choice4" value="3" type="button"></button></li>
+                    <li><button id="choice1" value="0" type="button" class="answer-choices">Answer 1</button></li>
+                    <li><button id="choice2" value="1" type="button" class="answer-choices">Answer 2</button></li>
+                    <li><button id="choice3" value="2" type="button" class="answer-choices">Answer 3</button></li>
+                    <li><button id="choice4" value="3" type="button" class="answer-choices">Answer 4</button></li>
                 </ul>
-                <div id="question-answer"></div>
+                <div id="feedback"></div>
                 <!-- CHECK -->
             </section>
             <!-- Quiz-End-Score Section -->
             <section id="score-submit-section">
                 <h2>All Done!</h2>
                 <p>
-                    Your final score is: <span id="score" class="pl-1">0</span>
+                    Your final score is: <span id="user-score" class="pl-1">0</span>
                 </p>
                 <p>
                     Enter intials: <span class="ml-1"><input placeholder="initials" id="uner-initials"></span>
-                    <button id="submit-score">Submit</button>
+                    <button id="submit-score-button">Submit</button>
                 </p>
             </section>
             <!-- High Scores Section -->
@@ -56,8 +56,8 @@
                 <ol id="score-list">
                     <!--  -->
                 </ol>
-                <button id="btn-return">Return</button>
-                <button id="btn-clear">Clear High Scores</button>
+                <button id="return-button">Return</button>
+                <button id="clear-button">Clear High Scores</button>
             </section>
         </main>
         <script src="./assets/js/script.js"></script>
