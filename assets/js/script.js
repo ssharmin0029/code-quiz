@@ -8,7 +8,7 @@ var quizStartEl = document.querySelector("#quiz-start-section");
 var startButton = document.querySelector("#start-button");
 // ------------------------------------------------------------------------
 var quizQuestionsEl = document.querySelector("#quiz-section");
-var questionTitle = document.querySelector("#question-title");
+var questionTitleEl = document.querySelector("#question-title");
 var answerChoicesButton = document.querySelectorAll(".answer-choices")
 var asnwer1Button = document.querySelector("#choice1");
 var asnwer2Button = document.querySelector("#choice2");
@@ -28,37 +28,72 @@ var clearScoresButton = document.querySelector("#clear-scores-button");
 var scoreList = [];
 // ------------------------------------------------------------------------
 
-//
-var mcQuestions = [
+// Array of question objects
+var arrayOfQuestions = [
     {
         questionTitle: "What does HTML stands for?",
-        choices: ["1. Hypertext Machine language", "2. Hypertext and links markup language", "3. Hypertext Markup Language", "4. Hightext machine language"],
+        answerChoices: ["1. Hypertext Machine language", "2. Hypertext and links markup language", "3. Hypertext Markup Language", "4. Hightext machine language"],
         answer: "3"
     },
     {
         questionTitle: "What is the default value of the position property?",
-        choices: ["1. relative", "2. fixed", "3. absolute", "4. static"],
+        answerChoices: ["1. relative", "2. fixed", "3. absolute", "4. static"],
         answer: "4"
     },
     {
         questionTitle: "Commonly used data types DO NOT include:",
-        choices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        answerChoices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
         answer: "3"
     },
     {
         questionTitle: "The condition in an if/else statement is enclosed within ________.",
-        choices: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
+        answerChoices: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
         answer: "3"
     },
     {
         questionTitle: "The Document Object Model (DOM) allows you to:",
-        choices: ["1. Get elements from the DOM", "2. Create, Add and Remove elements in the DOM", "3. Traverse the elements of the DOM", "4. All of the above"],
+        answerChoices: ["1. Get elements from the DOM", "2. Create, Add and Remove elements in the DOM", "3. Traverse the elements of the DOM", "4. All of the above"],
         answer: "4"
     },
     {
         questionTitle: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        choices: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
+        answerChoices: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
         answer: "4"
     }
-]
+];
 // ------------------------------------------------------------------------
+
+function getQuestion (id) {
+    if (id < arrayOfQuestions.length) {
+        questionTitleEl.textContent = arrayOfQuestions[id].questionTitle
+        asnwer1Button.textContent = arrayOfQuestions[id].answerChoices[0];
+        asnwer2Button.textContent = arrayOfQuestions[id].answerChoices[1];
+        asnwer3Button.textContent = arrayOfQuestions[id].answerChoices[2];
+        asnwer4Button.textContent = arrayOfQuestions[id].answerChoices[3];
+    }
+}
+
+function setTimer () {
+    var timerInterval = setInterval (function () {
+        secondsLeft--;
+        timerCount.textContent = "Time: " + secondsLeft;
+
+        if (secondsLeft === 0 || questionCount === arrayOfQuestions.length) {
+            quizQuestionsEl.style.visibility = "hidden";
+            submitScoreEl.style.display = "block";
+            userScore.textContent = secondsLeft;
+        } 
+
+    }, 1000);
+}
+
+function startQuiz () {
+    quizStartEl.style.visibility = "hidden";
+    quizQuestionsEl.style.display = "block";
+
+    setTimer();
+    getQuestion(questionCount);
+}
+
+// Start the Quiz with the timer 
+startButton.addEventListener("click", startQuiz);
