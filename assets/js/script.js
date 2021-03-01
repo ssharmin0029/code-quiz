@@ -1,230 +1,186 @@
-// Variables to reference DOM elements + Variables definitions to hold values
-var timerCount = document.querySelector("#timer-count");
-var userScore = document.querySelector("#user-score");
-var viewHighScoresButton = document.querySelector("#view-high-scores-button");
+// --------------------------------------------------------------------------------------
+// Variables to reference elements in the document + Variables definitions to hold values
+// --------------------------------------------------------------------------------------
+var quizStartEl = document.getElementById('quiz-start-section');
+var quizQuestionsEl = document.getElementById("quiz-section");
+var submitScoreEl = document.getElementById('submit-score-section');
+var timerCountEl = document.getElementById('timer-count');
+var questionTitleEl = document.getElementById('question-title');
+var answerChoicesEl = document.getElementById('answer-choices');
+// If there is a match gets the first element with a class of "feedback"
+var feedbackEl = document.getElementsByClassName('feedback')[0];
+var userScoreEl = document.getElementById('user-score');
+// userInitialsEl in addScore()
+var submitScoreButton = document.getElementById('submit-score-button');
+var startButton = document.getElementById('start-button');
+
 var secondsLeft = 90;
-// ---------------------------------------------------------------------------
-var quizStartEl = document.querySelector("#quiz-start-section");
-var startButton = document.querySelector("#start-button");
-// ---------------------------------------------------------------------------
-var quizQuestionsEl = document.querySelector("#quiz-section");
-var questionTitleEl = document.querySelector("#question-title");
-var answerChoicesButton = document.querySelectorAll("button.answer-choices")
-var asnwer1Button = document.querySelector("#choice1");
-var asnwer2Button = document.querySelector("#choice2");
-var asnwer3Button = document.querySelector("#choice3");
-var asnwer4Button = document.querySelector("#choice4");
-var feedback = document.querySelector("#feedback");
-var currentQuestionIndex = 0;
-// ---------------------------------------------------------------------------
-var submitScoreEl = document.querySelector("#submit-score-section");
-var userInitials = document.querySelector("#user-initials");
-var submitScoreButton = document.querySelector("#submit-score-button");
-// ---------------------------------------------------------------------------
-var highScoresEl = document.querySelector("#high-scores-section");
-var scoreListEl = document.querySelector("#score-list");
-var returnButton = document.querySelector("#return-button");
-var clearScoresButton = document.querySelector("#clear-scores-button");
-var scoreList = [];
-// ---------------------------------------------------------------------------
+var currentQuestionIndex = -1;
 
-// Array of question objects
-var arrayOfQuestions = [
-    {
-        questionTitle: "What does HTML stands for?",
-        answerChoices: ["1. Hypertext Machine language", "2. Hypertext and links markup language", "3. Hypertext Markup Language", "4. Hightext machine language"],
-        // Index 2
-        correctAnswer: "2"
-    },
-    {
-        questionTitle: "What is the default value of the position property?",
-        answerChoices: ["1. relative", "2. fixed", "3. absolute", "4. static"],
-        // Index 3
-        correctAnswer: "3"
-    },
-    {
-        questionTitle: "Commonly used data types DO NOT include:",
-        answerChoices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        // Index 2
-        correctAnswer: "2"
-    },
-    {
-        questionTitle: "The condition in an if/else statement is enclosed within ________.",
-        answerChoices: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        // Index 2
-        correctAnswer: "2"
-    },
-    {
-        questionTitle: "The Document Object Model (DOM) allows you to:",
-        answerChoices: ["1. Get elements from the DOM", "2. Create, Add and Remove elements in the DOM", "3. Traverse the elements of the DOM", "4. All of the above"],
-        // Index 3
-        correctAnswer: "3"
-    },
-    {
-        questionTitle: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answerChoices: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        // Index 3
-        correctAnswer: "3"
-    }
-];
-// ---------------------------------------------------------------------------
-
-//
-function getQuestion (id) {
-    if (id < arrayOfQuestions.length) {
-        questionTitleEl.textContent = arrayOfQuestions[id].questionTitle
-        asnwer1Button.textContent = arrayOfQuestions[id].answerChoices[0];
-        asnwer2Button.textContent = arrayOfQuestions[id].answerChoices[1];
-        asnwer3Button.textContent = arrayOfQuestions[id].answerChoices[2];
-        asnwer4Button.textContent = arrayOfQuestions[id].answerChoices[3];
-    }
+// --------------------------------------------------------------------------------------
+// The init function is called when the page loads 
+// --------------------------------------------------------------------------------------
+function init() {
+    // Quiz-Question and Quiz-End-Score Sections won't be displayed
+    quizStartEl.style.display = "block";
+    quizQuestionsEl.style.display = "none";
+    submitScoreEl.style.display = "none";
 }
 
-//
-function setTimer () {
-    var timerInterval = setInterval (function () {
-        secondsLeft--;
-        timerCount.textContent = "Time: " + secondsLeft;
-
-        if (secondsLeft === 0 || currentQuestionIndex === arrayOfQuestions.length) {
-            clearInterval(timerInterval);
-            quizQuestionsEl.style.display = "none";
-            submitScoreEl.style.display = "block";
-            userScore.textContent = secondsLeft;
-        } 
-
-    }, 1000);
-}
-
-//
-function startQuiz () {
+// --------------------------------------------------------------------------------------
+// The startQuiz function is called when the start button is clicked 
+// --------------------------------------------------------------------------------------
+function startQuiz() {
+    // Quiz-Start Section won't be displayed 
     quizStartEl.style.display = "none";
     quizQuestionsEl.style.display = "block";
-
-    setTimer();
-    getQuestion(currentQuestionIndex);
+    
+    // Calls startTimer and getQuestion functions 
+    startTimer();
+    getQuestion();
 }
 
-// ---------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+// The startTimer function starts and stops the timer, and triggers displayScore function
+// --------------------------------------------------------------------------------------
+function startTimer() {
+    // Sets timer 
+    // Sets interval in variable; setInterval(function, interval(ms))
+    var timeInterval = setInterval(function() {
+        secondsLeft--;
+        // Sets the textContent of timerCountEl to show the remaining seconds 
+        timerCountEl.textContent = "Time: " + secondsLeft;
 
-//
-function answerChecker (event) {
+        // Once secondsLeft becomes 0 or currentQuestionIndex reaches the length of the arrayOfQuestions --> 
+        if (secondsLeft == 0 || currentQuestionIndex === arrayOfQuestions.length) {
+            // Stops execution of action at set interval
+            clearInterval(timeInterval);
+            // Calls displayScore() after less than a second
+            setTimeout(displayScore, 500);
+        }
+    }, 1000);
+}
+
+// --------------------------------------------------------------------------------------
+// The getQuestion function is called when the startQuiz function is called with a click
+// --------------------------------------------------------------------------------------
+function getQuestion() {
+    currentQuestionIndex++;
+
+    // Sets the textContent of questionTitleE to the questionTitle
+    questionTitleEl.textContent = arrayOfQuestions[currentQuestionIndex].questionTitle;
+    // Sets the textContent of answerChoicesEl to an empty string 
+    answerChoicesEl.textContent = "";
+
+    // Stores the answerChoices to a new array-variable called choices 
+    var choices = arrayOfQuestions[currentQuestionIndex].answerChoices
+
+    // Loops through the array choices 
+    for (var i = 0; i < choices.length; i++) {
+        // Creates button element 
+        var choiceNode = document.createElement("button");
+        // Sets value of choices of currentIndex to the textContent 
+        choiceNode.textContent = choices[i];
+        // Appends button to the answerChoicesEl
+        answerChoicesEl.appendChild(choiceNode);
+    }
+}
+
+// --------------------------------------------------------------------------------------
+// The hideFeedback function to not show feedbackEl
+// --------------------------------------------------------------------------------------
+function hideFeedback() {
+    feedbackEl.style.display = "none";
+}
+
+// --------------------------------------------------------------------------------------
+// The displayFeedback function to show feedbackEl
+// --------------------------------------------------------------------------------------
+function displayFeedback() {
+    feedbackEl.style.display = "block";
+}
+
+// --------------------------------------------------------------------------------------
+// The checkAnswer function validates the correct answer 
+// Action to be perfomed on click stored in named function 
+// --------------------------------------------------------------------------------------
+function checkAnswer(event) {
+    //Prevent default action 
     event.preventDefault();
 
-    feedback.style.display = "block";
-    var responseEl = document.createElement("p");
-    feedback.appendChild(responseEl);
-
-    setTimeout (function () {
-        responseEl.style.display = "none";
-    }, 1000);
-    
-    if (arrayOfQuestions[currentQuestionIndex].correctAnswer === event.target.value) {
-        responseEl.textContent = "Correct Choice!";
+    // If the correct answer stored in a array question matches to the textContent of the targetd event --> 
+    if (arrayOfQuestions[currentQuestionIndex].correctAnswer === event.target.textContent) {
+        // Set the textContent of feedbackEl to 'Correct Answer'
+        feedbackEl.textContent = "Correct Answer!";
+        // Calls displayScore() after 1 second
+        setTimeout(hideFeedback, 1000);
+        displayFeedback();
     }
     else {
+        // Set the textContent of feedbackEl to 'Wrong Answer'
+        feedbackEl.textContent = "Wrong Answer!";
+        setTimeout(hideFeedback, 1000);
+        // If the answer is wrong, take away 10 seconds from the remaining seconds 
         secondsLeft = secondsLeft - 10;
-        responseEl.textContent = "Wrong Choice!";
+        displayFeedback();
     }
+    // Calls getQuestion function 
+    getQuestion();
+}
 
-    if (currentQuestionIndex < arrayOfQuestions.length) {
-        currentQuestionIndex++;
-    }
-    getQuestion(currentQuestionIndex);
+// --------------------------------------------------------------------------------------
+// The displayScore function shows the user's final quiz score 
+// --------------------------------------------------------------------------------------
+function displayScore() {
+    // Quiz-Start and Quiz-Question Sections won't be displayed
+    quizStartEl.style.display = "none";
+    quizQuestionsEl.style.display = "none";
+    submitScoreEl.style.display = "block";
     
+    // Sets the textContent of userScoreEl to show the user's score 
+    userScoreEl.textContent = "Your final score is: " + secondsLeft + ".";
 }
 
-//
-function addScore (event) {
-    event.preventDefault();
+// --------------------------------------------------------------------------------------
+// The addScore function adds scores to the local storage
+// --------------------------------------------------------------------------------------
+function addScore() {
+    // Accessing the value of input element by id
+    var userInitialsEl = document.getElementById('user-initials').value.toUpperCase();
 
-    submitScoreEl.style.display = "none";
-    highScoresEl.style.dsiplay = "block";
+    // Creates a new object with nameInitials and score keys 
+    var quizScore = {
+        nameInitials: userInitialsEl,
+        score: secondsLeft
+    };
 
-    var initialsInput = userInitials.value.toUpperCase();
-    scoreList.push({initials: initialsInput, score: secondsLeft});
-
-    //sort 
-    // scoreList = scoreList.sort(function(a, b) {
-    //     var scoreA = a.score;
-    //     var scoreB = b.score;
-
-    //     if (scoreA <scoreB) {
-    //         return -1;
-    //     }
-    //     else if (scoreA > scoreB) {
-    //         return 1;
-    //     }
-    //     else {
-    //         return 0;
-    //     }
-    // });
-
-    scoreListEl.textContent = "";
-    for (var i = 0; i < scoreList.length; i++) {
-        let li = document.createElement("li");
-        li.textContent = scoreList[i].initials + ": " + scoreList[i].score;
-        scoreListEl.append(li);
-    }
-    // Adds to local storage
-    storeScores();
-    renderScores();
+    // Gets stored quiz score(s) from the local storage, if there is any
+    // If not, makes a new-empty array
+    var highScores = JSON.parse(localStorage.getItem("highScores") || "[]");
+    // Pushes quizScore object to highScores array
+    highScores.push(quizScore);
+    // Stringifies the pushed object in the array and sets the keys in the local storage 
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-function storeScores () {
-    localStorage.setItem("scoreList", JSON.stringify(scoreList));
-}
+// Clicking on submitScoreButton takes to a new html page, containing the highScores
+submitScoreButton.addEventListener("click", function(event) {
+    // Stops event from bubbling up and adding new scores
+    event.stopPropagation();
+    addScore();
 
-function renderScores () {
-    // Gets stored scores from the localStorage
-    // parses the JSON string to an object 
-    var storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
+    // Referring to the highScores.html page using window object location 
+    location.href = './highScores.html'
+});
 
-    // If scores were retrieved from the localStorage, update the scoreList array to it 
-    if (storedScoreList !== null) {
-        scoreList = storedScoreList;
-    }
-}
+// --------------------------------------------------------------------------------------
+// Function Call + Event Listeners 
+// --------------------------------------------------------------------------------------
+// Calls init() so it fires when the page opens 
+init();
 
-//
-function clearHighScores () {
-    localStorage.clear()
-    scoreListEl.textContent = "";
-}
-
-// ---------------------------------------------------------------------------
-
-// Start the Quiz with the timer 
+// Attaches event listener to startButton to call startQuiz function on click
 startButton.addEventListener("click", startQuiz);
 
-//  
-answerChoicesButton.forEach(element => {
-    element.addEventListener("click",answerChecker);
-});
-
-//
-submitScoreButton.addEventListener("click", addScore);
-
-//
-clearScoresButton.addEventListener("click", clearHighScores);
-
-//Return Button 
-returnButton.addEventListener("click", function () {
-    highScoresEl.style.display = "none";
-    quizStartEl.style.display = "block";
-    secondsLeft = 90;
-    timerCount.textContent = "Time: " + secondsLeft;
-});
-
-//View-Hide High Scores Button 
-viewHighScoresButton.addEventListener("click", function () {
-    if (highScoresEl.style.display === "none") {
-        highScoresEl.style.display = "block";
-    }
-    else if (highScoresEl.style.display === "block") {
-        highScoresEl.style.display = "none";
-    }
-    else {
-        return alert("No Scores to Show.");
-    }
-});
+// Add listenr to check for correct answer on each question call
+answerChoicesEl.addEventListener("click", checkAnswer);
