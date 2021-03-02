@@ -1,5 +1,5 @@
 /* reset css */
-/* html {
+html {
     height: 100%;
 }
 
@@ -28,7 +28,3 @@ button {
     font-family: inherit;
 }
 
-ol,
-ul {
-    list-style: none;
-} */

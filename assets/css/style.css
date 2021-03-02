@@ -1,10 +1,184 @@
-/* #quiz-section,
-#submit-score-section,
-#high-scores-section 
-{
-    display:none;
+/* CSS Variables */
+:root {
+    --txt-color: rgba(231, 248, 234, 0.834);
 }
 
-ul {
-    list-style-type: none;
-} */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 1.2em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(147, 162, 172);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+header a {
+    padding: 0.6em;
+    color: var(--txt-color);
+}
+
+header span {
+    padding: 0.6em; 
+    color: var(--txt-color);
+}
+
+body {
+    border-style: groove;
+    border-color: rgb(216, 238, 247);
+    background-color:rgb(255, 250, 250);
+}
+
+.sections {
+    display:flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    padding: 0.5em;
+    line-height: 1.5em;
+    /* text-align: center; */
+}
+
+#quiz-start-section h1 {
+    font-size: 2.0em;
+    color: rgb(173, 216, 230);
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+    margin-bottom: 0.8em;
+    
+}
+
+#quiz-start-section p {
+    width: 100%;
+    text-align: center;
+    font-size: 1.0em;
+    margin-bottom: 1.5em;
+
+}
+
+#quiz-start-section button {
+    text-align: center;
+    padding: 0.5em 1.0em;
+    margin-left: 40em;
+    
+}
+
+button:hover {
+    background-color: lightblue;
+}
+
+#quiz-section {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+#quiz-section #question-title{
+    font-size: 1.5em;
+    /* display: block; */
+    width: 100%;
+    /* margin-left: 40em; */
+    /* text-align: center; */
+    /* flex-wrap: wrap; */
+    margin-bottom: 0.8em;
+    float: left;
+}
+
+#answer-choices button {
+    display: block;
+    padding: 0.1em 1em;
+    margin-bottom: 0.8em;
+    margin-left: 32.0em;
+    width: 27%;
+    float:left;
+    font-size: 1.0em;
+
+    
+}
+
+.feedback {
+    float: right;
+    width: 100%;
+    font-size: 1.0em;
+    color:rgb(28, 29, 30);
+}
+
+#submit-score-section {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+#submit-score-section h3 {
+    width: 100%;
+    font-size: 1.8em;
+    margin-bottom: 0.8em;
+
+}
+
+#submit-score-section p {
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 0.6em;
+
+}
+
+.form-group {
+    width: 100%;
+    font-size: 1.0em;
+
+}
+
+.form-group button {
+    font-size: 1.0em;
+    padding: 0.1em 1em;
+
+}
+
+/* Score Page */
+
+header.score-page {
+    padding: 1.8em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(147, 162, 172);
+    /* text-align: center; */
+    font-weight: bold;
+    font-size: 1.2em;
+}
+    
+#high-scores-section #scores-title {
+    font-size: 2.0em;
+    color: rgb(173, 216, 230);
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+    margin-bottom: 0.8em;
+}
+
+ol {
+    width: 100%;
+    margin-left: 35.0em;
+}
+
+#scores-list {
+    width: 100%;
+    margin-bottom: 0.8em;
+    font-size: 1.2em;
+
+}
+
+#high-scores-section #return-button {
+    margin-left: 35.5em;
+    font-size: 1.0em;
+    padding: 0.5em 1.6em;
+
+}
+
+#high-scores-section #clear-scores-button {
+    font-size: 1.0em;
+    padding: 0.1em 1.0em;
+    margin-left: 0.5em;
+}

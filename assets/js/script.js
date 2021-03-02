@@ -22,6 +22,7 @@ var currentQuestionIndex = -1;
 // --------------------------------------------------------------------------------------
 function init() {
     // Quiz-Question and Quiz-End-Score Sections won't be displayed
+
     quizStartEl.style.display = "block";
     quizQuestionsEl.style.display = "none";
     submitScoreEl.style.display = "none";
@@ -32,6 +33,7 @@ function init() {
 // --------------------------------------------------------------------------------------
 function startQuiz() {
     // Quiz-Start Section won't be displayed 
+    
     quizStartEl.style.display = "none";
     quizQuestionsEl.style.display = "block";
     
@@ -49,7 +51,7 @@ function startTimer() {
     var timeInterval = setInterval(function() {
         secondsLeft--;
         // Sets the textContent of timerCountEl to show the remaining seconds 
-        timerCountEl.textContent = "Time: " + secondsLeft;
+        timerCountEl.textContent = "Time: " + secondsLeft + " s";
 
         // Once secondsLeft becomes 0 or currentQuestionIndex reaches the length of the arrayOfQuestions --> 
         if (secondsLeft == 0 || currentQuestionIndex === arrayOfQuestions.length) {
@@ -111,14 +113,14 @@ function checkAnswer(event) {
     // If the correct answer stored in a array question matches to the textContent of the targetd event --> 
     if (arrayOfQuestions[currentQuestionIndex].correctAnswer === event.target.textContent) {
         // Set the textContent of feedbackEl to 'Correct Answer'
-        feedbackEl.textContent = "Correct Answer!";
+        feedbackEl.textContent = "✅ Correct";
         // Calls displayScore() after 1 second
         setTimeout(hideFeedback, 1000);
         displayFeedback();
     }
     else {
         // Set the textContent of feedbackEl to 'Wrong Answer'
-        feedbackEl.textContent = "Wrong Answer!";
+        feedbackEl.textContent = "❌ Wrong";
         setTimeout(hideFeedback, 1000);
         // If the answer is wrong, take away 10 seconds from the remaining seconds 
         secondsLeft = secondsLeft - 10;
@@ -138,7 +140,7 @@ function displayScore() {
     submitScoreEl.style.display = "block";
     
     // Sets the textContent of userScoreEl to show the user's score 
-    userScoreEl.textContent = "Your final score is: " + secondsLeft + ".";
+    userScoreEl.textContent = "Your final score is: " + secondsLeft;
 }
 
 // --------------------------------------------------------------------------------------

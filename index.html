@@ -6,17 +6,17 @@
         <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
         <!-- Title -->
-        <title>Code Quiz: HTML -CSS-JS</title>
+        <title>Code Quiz: HTML-CSS-JS</title>
     </head>
     <body>
         <!-- Main header, displaying High Scores and Timer -->
         <header>
             <a href="./highScores.html">View High Scores</a>
-            <span id="timer-count">Time: 90</span>
+            <span id="timer-count">Time: 90 s</span>
         </header>
-        <main>
+        <main class="main-section">
             <!-- Quiz-Start Section -->
-            <section id="quiz-start-section">
+            <section class="sections" id="quiz-start-section">
                 <h1>Coding Quiz Challenge</h1>
                 <p>
                     Try to answer the following HTMl-CSS-JS related questions within 90 seconds. 
@@ -26,16 +26,16 @@
                 <button type="button" id="start-button">Start Quiz</button>
             </section> 
             <!-- Quiz-Question Section -->
-            <section id="quiz-section">
-                <h2 id="question-title">Question Goes Here</h2>
+            <section class="sections" id="quiz-section">
+                <h3 id="question-title">Question Goes Here</h3>
                 <div id="answer-choices">
                     <!-- 4 Choices Goes Here -->
                 </div>
                 <h4 class="feedback"></h4>
             </section>
             <!-- Quiz-End-Score Section -->
-            <section id="submit-score-section">
-                <h2>All Done!</h2>
+            <section class="sections" id="submit-score-section">
+                <h3>All Done!</h3>
                 <p id="user-score"></p>
                 <form class="form-group">
                     <label for="quiz-score">Enter Your Initials:</label>

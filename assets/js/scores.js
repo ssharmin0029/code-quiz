@@ -19,7 +19,7 @@ for (var i = 0; i < highScores.length; i++) {
     // Creates list element 
     var liEls = document.createElement("li");
     // Sets values of intials and score to the textContent of list element 
-    liEls.textContent = highScores[i].nameInitials + ": " + highScores[i].score;
+    liEls.textContent = highScores[i].nameInitials + " ------ " + highScores[i].score;
     // Appends list element to the scoresListEl
     scoresListEl.appendChild(liEls);
 }
