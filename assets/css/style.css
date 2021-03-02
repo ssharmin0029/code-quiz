@@ -1,6 +1,13 @@
+/* ---------------------------- */
 /* CSS Variables */
+/* ---------------------------- */
 :root {
-    --txt-color: rgba(231, 248, 234, 0.834);
+    --bg-color: rgb(147, 162, 172);
+    --header-txt-color: rgba(231, 248, 234, 0.834);
+    --title-btn-txt-color: rgb(133, 141, 141);
+    --txt-color: rgb(67, 70, 71);
+    --txt-bold: bold;
+    --padding-ele: 0.6em;
 }
 
 *{
@@ -9,23 +16,27 @@
     padding: 0;
 }
 
+.main-section {
+    width: 100%;
+}
+
 header {
     padding: 1.2em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: rgb(147, 162, 172);
     text-align: center;
-    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: var(--txt-bold);
     font-size: 1.2em;
+    background-color: var(--bg-color);
 }
 
 header a {
     padding: 0.6em;
-    color: var(--txt-color);
+    color: var(--header-txt-color);
 }
 
 header span {
     padding: 0.6em; 
-    color: var(--txt-color);
+    color: var(--header-txt-color);
 }
 
 body {
@@ -37,148 +48,175 @@ body {
 .sections {
     display:flex;
     flex-wrap: wrap;
-    /* align-items: center; */
     padding: 0.5em;
     line-height: 1.5em;
-    /* text-align: center; */
 }
 
 #quiz-start-section h1 {
-    font-size: 2.0em;
-    color: rgb(173, 216, 230);
-    width: 100%;
-    margin: 20px;
-    text-align: center;
+    width: 100%; 
+    margin: 20px; 
     margin-bottom: 0.8em;
-    
+    text-align: center; 
+    font-size: 2.0em;
+    color: var(--title-btn-txt-color);
 }
 
 #quiz-start-section p {
     width: 100%;
+    margin-bottom: 1.5em;
     text-align: center;
     font-size: 1.0em;
-    margin-bottom: 1.5em;
-
+    color: var(--txt-color);
 }
 
-#quiz-start-section button {
+#start-button {
+    padding: 0.7em 1.4em;
+    margin-left: 36.5em;
     text-align: center;
-    padding: 0.5em 1.0em;
-    margin-left: 40em;
-    
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--title-btn-txt-color);   
 }
 
 button:hover {
-    background-color: lightblue;
+    background-color: rgb(173, 216, 230);
 }
 
 #quiz-section {
-    text-align: center;
     margin-top: 1.5em;
+    text-align: center;
 }
 
 #quiz-section #question-title{
-    font-size: 1.5em;
-    /* display: block; */
     width: 100%;
-    /* margin-left: 40em; */
-    /* text-align: center; */
-    /* flex-wrap: wrap; */
-    margin-bottom: 0.8em;
     float: left;
+    margin-bottom: 0.8em;
+    font-size: 1.5em;
+    color: var(--title-btn-txt-color);
 }
 
 #answer-choices button {
+    width: 27%;
     display: block;
+    float:left;
     padding: 0.1em 1em;
     margin-bottom: 0.8em;
     margin-left: 32.0em;
-    width: 27%;
-    float:left;
     font-size: 1.0em;
-
-    
+    color: var(--txt-color);
 }
 
 .feedback {
-    float: right;
     width: 100%;
+    float: right;
     font-size: 1.0em;
-    color:rgb(28, 29, 30);
+    color: rgb(107, 112, 114);
 }
 
 #submit-score-section {
-    text-align: center;
     margin-top: 1.5em;
+    text-align: center;
 }
 
 #submit-score-section h3 {
     width: 100%;
-    font-size: 1.8em;
     margin-bottom: 0.8em;
-
+    font-size: 1.8em;
+    color: var(--title-btn-txt-color);
 }
 
 #submit-score-section p {
     width: 100%;
-    font-size: 1.2em;
     margin-bottom: 0.6em;
+    font-size: 1.2em;
+    color: var(--txt-color);
 
 }
 
 .form-group {
     width: 100%;
     font-size: 1.0em;
+    color: var(--txt-color);
+}
 
+.form-group label {
+    padding: 0.1em 1em;
+    font-size: 1.0em;
+    color: var(--txt-color);
 }
 
 .form-group button {
-    font-size: 1.0em;
     padding: 0.1em 1em;
-
+    font-weight: bold;
+    font-size: 1.0em;
+    color: var(--title-btn-txt-color);
 }
 
+/* ---------------------------- */
+/* media query */
+/* ---------------------------- */
+@media (max-width: 550px) {
+    .main-section {
+        width: 60%;
+        display: flex;
+    }
+
+    header {
+        font-size: 0.6em;
+
+    }
+
+    #quiz-start-section h1 {
+        font-size: 0.8em;
+        width: 60%;
+    }
+    #quiz-start-section p {
+        width: 60%;
+        font-size: 0.4em;
+    }
+}
+
+/* ---------------------------- */
 /* Score Page */
+/* ---------------------------- */
 
 header.score-page {
     padding: 1.8em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: rgb(147, 162, 172);
-    /* text-align: center; */
-    font-weight: bold;
-    font-size: 1.2em;
+    background-color: var(--bg-color);
 }
     
 #high-scores-section #scores-title {
-    font-size: 2.0em;
-    color: rgb(173, 216, 230);
     width: 100%;
     margin: 20px;
-    text-align: center;
     margin-bottom: 0.8em;
+    text-align: center;
+    font-size: 2.0em;
+    color: var(--title-btn-txt-color);
 }
 
 ol {
     width: 100%;
     margin-left: 35.0em;
+    font-size: 1.2em;
+    color: var(--txt-color);
 }
 
 #scores-list {
-    width: 100%;
     margin-bottom: 0.8em;
-    font-size: 1.2em;
-
 }
 
 #high-scores-section #return-button {
+    padding: 0.3em 1.6em;
     margin-left: 35.5em;
+    font-weight: bold;
     font-size: 1.0em;
-    padding: 0.5em 1.6em;
-
+    color: var(--title-btn-txt-color);
 }
 
 #high-scores-section #clear-scores-button {
-    font-size: 1.0em;
-    padding: 0.1em 1.0em;
+    padding: 0.2em 0.9em;
     margin-left: 0.5em;
+    font-weight: bold;
+    font-size: 1.0em;
+    color: var(--title-btn-txt-color);
 }

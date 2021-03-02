@@ -22,7 +22,6 @@ var currentQuestionIndex = -1;
 // --------------------------------------------------------------------------------------
 function init() {
     // Quiz-Question and Quiz-End-Score Sections won't be displayed
-
     quizStartEl.style.display = "block";
     quizQuestionsEl.style.display = "none";
     submitScoreEl.style.display = "none";
@@ -33,7 +32,6 @@ function init() {
 // --------------------------------------------------------------------------------------
 function startQuiz() {
     // Quiz-Start Section won't be displayed 
-    
     quizStartEl.style.display = "none";
     quizQuestionsEl.style.display = "block";
     
