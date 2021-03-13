@@ -22,7 +22,7 @@ var currentQuestionIndex = -1;
 // --------------------------------------------------------------------------------------
 function init() {
     // Quiz-Question and Quiz-End-Score Sections won't be displayed
-    quizStartEl.style.display = "block";
+    quizStartEl.style.display = "flex";
     quizQuestionsEl.style.display = "none";
     submitScoreEl.style.display = "none";
 }
@@ -33,7 +33,7 @@ function init() {
 function startQuiz() {
     // Quiz-Start Section won't be displayed 
     quizStartEl.style.display = "none";
-    quizQuestionsEl.style.display = "block";
+    quizQuestionsEl.style.display = "flex";
     
     // Calls startTimer and getQuestion functions 
     startTimer();
@@ -97,7 +97,7 @@ function hideFeedback() {
 // The displayFeedback function to show feedbackEl
 // --------------------------------------------------------------------------------------
 function displayFeedback() {
-    feedbackEl.style.display = "block";
+    feedbackEl.style.display = "flex";
 }
 
 // --------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ function displayScore() {
     // Quiz-Start and Quiz-Question Sections won't be displayed
     quizStartEl.style.display = "none";
     quizQuestionsEl.style.display = "none";
-    submitScoreEl.style.display = "block";
+    submitScoreEl.style.display = "flex";
     
     // Sets the textContent of userScoreEl to show the user's score 
     userScoreEl.textContent = "Your final score is: " + secondsLeft;
