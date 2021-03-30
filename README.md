@@ -1,6 +1,9 @@
 # code-quiz
 
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 ## Screenshot
 ![alt text](assets/images/final-page-1.png)
 ![alt text](assets/images/final-page-2.png)
@@ -13,6 +16,15 @@ In this assignment we were asked to write a timed quiz application that stores h
 
 Writing this webpage was one of the most difficult assignments so far. There was a lot to take in (materials-wise) and deliver through the building of this project. (Manipulating DOM, the use of Setting Attributes, Creating and Appending elements, Timers-Intervals, Event Listeners, Prevent Default, Bubbling, Data Attributes, Local Storage) — to name some, mastering all these Web APIs topics in a short period of time wasn't possible. From looking up tutorials - to going back to notes - to looking for resources, required a lot of effort. I learned a lot while doing this project. However, I would say there is much more to learn, as it was just scratching the surface. Web APIs is a vast topic.   
 
+Used:
+- HTML
+- CSS
+- JavaScript 
+- Web APIs
+
 
 ## Deployed Application URL
 [code-quiz](https://ssharmin0029.github.io/code-quiz/)
+
+
+[Click Here to Contact](https://ssharmin0029.github.io/portfolio-website-ss/)
