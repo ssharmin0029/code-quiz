@@ -25,6 +25,3 @@ Used:
 
 ## Deployed Application URL
 [code-quiz](https://ssharmin0029.github.io/code-quiz/)
-
-
-[Click Here to Contact](https://ssharmin0029.github.io/portfolio-website-ss/)
